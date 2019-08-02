@@ -8,6 +8,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+
+
 if ( ! function_exists( 'understrap_scripts' ) ) {
 	/**
 	 * Load theme's JavaScript and CSS sources.
@@ -30,8 +32,11 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
                 'mapstyle' => get_field('google_map_style', 'option'), 
                 'wpurl' => get_bloginfo('wpurl'),
                 'mapmarker' => get_field('map_marker', 'option'),
+                'poimarker' => get_field('poi_marker', 'option'),
             ));
         }
+
+        wp_enqueue_script('aos', 'https://unpkg.com/aos@next/dist/aos.js', array('understrap-scripts'), 1.0, true );
 
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/theme.min.js' );
 		wp_enqueue_script( 'understrap-scripts', get_template_directory_uri() . '/js/theme.min.js', array(), $js_version, true );
