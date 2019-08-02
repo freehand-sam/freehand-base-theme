@@ -33,3 +33,16 @@ foreach ( $understrap_includes as $file ) {
 	}
 	require_once $filepath;
 }
+
+// Remove page templates inherited from the parent theme.
+add_filter( 'theme_page_templates', 'child_theme_remove_page_template' );
+
+function child_theme_remove_page_template( $page_templates ) {
+    unset( $page_templates['page-templates/blank.php'] ); 
+    unset( $page_templates['page-templates/empty.php'] ); 
+    unset( $page_templates['page-templates/fullwidthpage.php'] ); 
+    unset( $page_templates['page-templates/left-sidebarpage.php'] ); 
+    unset( $page_templates['page-templates/right-sidebarpage.php'] ); 
+    unset( $page_templates['page-templates/both-sidebarspage.php'] ); 
+return $page_templates;
+}

@@ -133,3 +133,65 @@ if ( ! function_exists( 'understrap_mobile_web_app_meta' ) ) {
 	}
 }
 add_action( 'wp_head', 'understrap_mobile_web_app_meta' );
+
+/*********************************
+ Copyright year as a shortcode
+ *********************************/
+
+function dynamic_copyright() {
+    global $wpdb;
+    
+    $copyright_dates = $wpdb->get_results("SELECT YEAR(min(post_date_gmt)) AS firstdate, YEAR(max(post_date_gmt)) AS lastdate FROM $wpdb->posts WHERE post_status = 'publish'");
+    $output = '';
+ 
+    if ($copyright_dates) {
+        $copyright = "&copy; " . $copyright_dates[0]->firstdate;
+        
+        if ($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
+            $copyright .= '-' . $copyright_dates[0]->lastdate;
+        }
+        
+        $output = $copyright;
+    }
+    
+    return $output;
+}
+
+/*******************************************
+ Add a new thumbnail sizes
+ *******************************************/
+
+add_theme_support( 'post-thumbnails' );
+add_action( 'after_setup_theme', 'wpdocs_theme_setup' );
+function wpdocs_theme_setup() {
+    add_image_size( 'square1000', 1000, 1000, true );
+    add_image_size( 'widescreen', 2400, 1350, true );
+}
+
+/*********************************
+ Google Maps API
+**********************************/
+
+function my_acf_init() {
+	$API = get_field('google_maps_api_key', 'option');
+	
+	if (!empty($API)) { 
+		acf_update_setting('google_api_key', $API);
+	}
+}
+
+add_action('acf/init', 'my_acf_init');
+
+/*********************************
+ Enqueue Google Fonts
+ *********************************/
+
+$GoogleFonts = get_field('google_fonts','option');
+
+if ($GoogleFonts) :
+	function wpb_add_google_fonts() {
+		$GoogleFonts = get_field('google_fonts','option');
+		wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=' . $GoogleFonts, false, null, 'all'  ); 
+	}
+	add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+endif;

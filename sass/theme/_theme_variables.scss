@@ -1,6 +1,176 @@
-// Use this file to overwrite the basic Bootstrap variables and add your own variables
-// To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder.
-// Just copy a variable from src/sass/bootstrap4/_variables.scss, paste it here and edit the value.
+$font-family-sans-serif: '', sans-serif;
+$font-family-serif: '', serif;
+$body-font: $font-family-sans-serif !default;
+$headline-font: $font-family-serif;
+$font-family-base: $font-family-sans-serif !default;
+
+// Colors
+$primary: #4C86A0;
+$secondary: #323E48;
+$white: #ffffff;
+
+// Body
+$body-bg: $white !default;
+$body-color: $primary !default;
+
+// Links
+$link-color: $primary !default;
+$link-decoration: none !default;
+$link-hover-color: darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
+
+// Buttons
+$btn-padding-y: 10px !default;
+$btn-padding-x: 20px !default;
+$input-btn-padding-y-sm: .125rem !default;
+$input-btn-padding-x-sm: 1rem !default;
+$btn-line-height: 1.25 !default;
+$btn-box-shadow: none;
+$btn-focus-box-shadow: none;
+$btn-active-box-shadow: none;
+$btn-border-radius: 0;
+$btn-border-width: 1px;
+
+// Timing Function
+$freehand-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+
+// Navs
+$nav-link-padding-y: .5rem !default;
+$nav-link-padding-x: 2rem !default;
+$navbar-dark-color: $white !default;
+$navbar-dark-hover-color: rgba($white, .75) !default;
+$navbar-dark-active-color: $white !default;
+
+// Responsive Font Size
+@mixin responsive-fs($min, $max, $max-width: 1200) {
+    $minpx: $min + 'px';
+    font-size: calc(#{$minpx} + (#{$max} - #{$min}) * (100vw - 375px)/(#{$max-width} - 375));
+
+    @include media-breakpoint-up(xl) {
+        font-size: #{$max}px;
+    }
+}
+
+// Vendor Prefixes
+@mixin vendor-prefix($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
+
+$sass-burger-add-vendor-prefixes: true !default;
+
+// Burger
+@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: .3s) {
+    $burger-height: $height !global;
+    $burger-gutter: $gutter !global;
+
+    position: relative;
+    margin-top: $height + $gutter;
+    margin-bottom: $height + $gutter;
+
+    @if $sass-burger-add-vendor-prefixes {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    user-select: none;
+
+    // 1. Fixes jagged edges in Firefox, see issue #10.
+    &, &::before, &::after {
+        display: block;
+        width: $width;
+        height: $height;
+        background-color: $color;
+        outline: 1px solid transparent; // 1
+        @if $border-radius != 0 {
+            border-radius: $border-radius;
+        }
+
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transition-property: background-color, -webkit-transform;
+            -moz-transition-property: background-color, -moz-transform;
+            -o-transition-property: background-color, -o-transform;
+        }
+        transition-property: background-color, transform;
+
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transition-duration: $transition-duration;
+            -moz-transition-duration: $transition-duration;
+            -o-transition-duration: $transition-duration;
+        }
+        transition-duration: $transition-duration;
+    }
+
+    &::before, &::after {
+        position: absolute;
+        content: "";
+    }
+
+    &::before {
+        top: -($height + $gutter);
+    }
+
+    &::after {
+        top: $height + $gutter;
+    }
+}
 
 
-$primary: #5533ff; // Thats a sample how you could change a BootStrap variable.
+// Select parts of the burger
+@mixin burger-parts {
+    &, &::before, &::after {
+        @content;
+    }
+}
+
+@mixin burger-top {
+    &::before {
+        @content;
+    }
+}
+
+@mixin burger-middle {
+    & {
+        @content;
+    }
+}
+
+@mixin burger-bottom {
+    &::after {
+        @content;
+    }
+}
+
+
+// Burger animations
+@mixin burger-to-cross($color: auto) {
+    & {
+        background-color: transparent;
+    }
+    @if ($color != auto) {
+        &::before, &::after {
+            background-color: $color;
+        }
+    }
+    &::before {
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -moz-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -ms-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -o-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+        }
+        transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+    }
+    &::after {
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -moz-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -ms-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -o-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+        }
+        transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+    }
+}

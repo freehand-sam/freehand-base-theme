@@ -20,7 +20,18 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		$css_version = $theme_version . '.' . filemtime( get_template_directory() . '/css/theme.min.css' );
 		wp_enqueue_style( 'understrap-styles', get_template_directory_uri() . '/css/theme.min.css', array(), $css_version );
 
-		wp_enqueue_script( 'jquery' );
+        wp_enqueue_script( 'jquery' );
+        
+        $gm_api = get_field('google_maps_api_key','option');
+        if ($gm_api) {
+            wp_enqueue_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=' . $gm_api, null, null, true);
+            wp_enqueue_script( 'gm_config', get_template_directory_uri() . '/js/google-maps.js', array('understrap-scripts'), 1.0, true );
+            wp_localize_script('gm_config', 'wp', array(
+                'mapstyle' => get_field('google_map_style', 'option'), 
+                'wpurl' => get_bloginfo('wpurl'),
+                'mapmarker' => get_field('map_marker', 'option'),
+            ));
+        }
 
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/theme.min.js' );
 		wp_enqueue_script( 'understrap-scripts', get_template_directory_uri() . '/js/theme.min.js', array(), $js_version, true );
