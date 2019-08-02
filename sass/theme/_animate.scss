@@ -1,0 +1,100 @@
+.animate {
+    transition: all 1500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
+    will-change: transform, opacity;
+    backface-visibility:hidden;
+    -webkit-backface-visibility: hidden;
+
+    &.grow-from-bottom {
+        transform-origin: bottom;
+        transform: scaleY(0);
+
+        &.active {
+            transform: scaleY(1);
+        }
+    }
+
+    &.grow-from-top {
+        transform-origin: top;
+        transform: scaleY(0);
+
+        &.active {
+            transform: scaleY(1);
+        }
+    }    
+
+    &.fade-in {
+        opacity: 0;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    &.fade-in-up {
+        opacity: 0;
+        transform-origin: bottom;
+        transform: translateY(50px);        
+
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    &.fade-in-down {
+        opacity: 0;
+        transform-origin: bottom;
+        transform: translateY(-50px);        
+
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }  
+    
+    &.fade-in-left {
+        opacity: 0;
+        transform-origin: bottom;
+        transform: translateX(-50px);        
+
+        &.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }  
+    
+    &.fade-in-right {
+        opacity: 0;
+        transform-origin: bottom;
+        transform: translateX(50px);        
+
+        &.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }      
+
+    &.delay-250 {
+        transition-delay: 250ms;
+    }
+
+    &.delay-500 {
+        transition-delay: 500ms;
+    }
+
+    &.delay-750 {
+        transition-delay: 750ms;
+    }
+
+    &.delay-1000 {
+        transition-delay: 1s;
+    }
+
+    &.delay-1500 {
+        transition-delay: 1500ms;
+    }
+
+    &.delay-2000 {
+        transition-delay: 2s;
+    }    
+}
