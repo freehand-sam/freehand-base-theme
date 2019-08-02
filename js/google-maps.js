@@ -27,7 +27,7 @@
             position: latlng,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: location.poi ? wp.poimarker : wp.mapmarker
+            icon: wp.poimarker
         });
 
         map.markers.push(marker);
@@ -56,8 +56,7 @@
     $('.acf-map').each((i, e) => {
         let location = {
             lng: $(e).data('lng'),
-            lat: $(e).data('lat'),
-            poi: $(e).data('poi')
+            lat: $(e).data('lat')
         }
 
         newMap($(e), location);
