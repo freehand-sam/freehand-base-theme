@@ -6,7 +6,8 @@
     function setStickyNav() {
         let distance = $('#wrapper-navbar .navbar').offset().top;
         const height = $('#wrapper-navbar').outerHeight();
-        $('#headerStickyContainer').height(height);
+        $('body').css('padding-top', height);
+        $('body.admin-bar').css('padding-top', height-34);
         setHeaderStatus(distance);
 
         $(window).scroll(function () {
