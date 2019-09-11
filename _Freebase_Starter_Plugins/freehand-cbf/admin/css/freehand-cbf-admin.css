@@ -1,0 +1,14 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+ fieldset {
+ 	margin-top:10px;
+ }
+ legend {
+ 	margin-bottom:5px;
+ 	font-weight: bold;
+ }
+ h2.nav-tab-wrapper {
+ 	margin-top:25px !important;
+ }
