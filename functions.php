@@ -18,11 +18,12 @@ $understrap_includes = array(
 	'/hooks.php',                           // Custom hooks.
 	'/extras.php',                          // Custom functions that act independently of the theme templates.
 	'/customizer.php',                      // Customizer additions.
-	//'/custom-comments.php',                 // Custom Comments file.
+	'/custom-comments.php',                 // Custom Comments file.
 	'/jetpack.php',                         // Load Jetpack compatibility file.
-	'/class-wp-bootstrap-navwalker.php',    // Load custom WordPress nav walker.
-	//'/woocommerce.php',                     // Load WooCommerce functions.
+	'/class-wp-bootstrap-navwalker.php',    // Load custom WordPress nav walker. Trying to get deeper navigation? Check out: https://github.com/understrap/understrap/issues/567
+	'/woocommerce.php',                     // Load WooCommerce functions.
 	'/editor.php',                          // Load Editor functions.
+	'/wp-admin.php',                        // /wp-admin/ related functions
 	'/deprecated.php',                      // Load deprecated functions.
 );
 
@@ -32,17 +33,4 @@ foreach ( $understrap_includes as $file ) {
 		trigger_error( sprintf( 'Error locating /inc%s for inclusion', $file ), E_USER_ERROR );
 	}
 	require_once $filepath;
-}
-
-// Remove page templates inherited from the parent theme.
-add_filter( 'theme_page_templates', 'child_theme_remove_page_template' );
-
-function child_theme_remove_page_template( $page_templates ) {
-    unset( $page_templates['page-templates/blank.php'] ); 
-    unset( $page_templates['page-templates/empty.php'] ); 
-    unset( $page_templates['page-templates/fullwidthpage.php'] ); 
-    unset( $page_templates['page-templates/left-sidebarpage.php'] ); 
-    unset( $page_templates['page-templates/right-sidebarpage.php'] ); 
-    unset( $page_templates['page-templates/both-sidebarspage.php'] ); 
-return $page_templates;
 }
