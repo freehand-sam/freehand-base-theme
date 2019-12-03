@@ -8,10 +8,13 @@ $font-family-base: $font-family-sans-serif !default;
 $primary: #4C86A0;
 $secondary: #323E48;
 $white: #ffffff;
+$black: #222222;
+$light:$white !default;
+$dark:$primary !default;
 
 // Body
-$body-bg: $white !default;
-$body-color: $primary !default;
+// $body-bg: $white !default;
+// $body-color: $primary !default;
 
 // Links
 $link-color: $primary !default;
@@ -42,14 +45,7 @@ $navbar-dark-hover-color: rgba($white, .75) !default;
 $navbar-dark-active-color: $white !default;
 
 // Responsive Font Size
-@mixin responsive-fs($min, $max, $max-width: 1200) {
-    $minpx: $min + 'px';
-    font-size: calc(#{$minpx} + (#{$max} - #{$min}) * (100vw - 375px)/(#{$max-width} - 375));
-
-    @include media-breakpoint-up(xl) {
-        font-size: #{$max}px;
-    }
-}
+$enable-responsive-font-sizes: true !default;
 
 // Vendor Prefixes
 @mixin vendor-prefix($name, $argument) {

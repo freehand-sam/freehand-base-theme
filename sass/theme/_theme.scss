@@ -3,17 +3,18 @@
 *******/
 
 * {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
 }
 
 body {
-	font-family: $body-font !important;
-	scroll-snap-type: y mandatory;
-	overflow-y: scroll;
+    font-family: $body-font !important;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
     color: $primary;
+    @include font-size(1rem);
 }
 
 // AOS Eeasing
@@ -27,34 +28,40 @@ body[data-aos-easing="freehand-easing"] [data-aos],
 *************/
 
 h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
-	font-family: $headline-font !important;
+    font-family: $headline-font !important;
     margin: 0;
     line-height: 1.5;
 }
 
 h1, .h1 {
-    @include responsive-fs(36, 56);
+    @include font-size(36px);
 }
 
 h2, .h2 {
-    @include responsive-fs(26, 40);
+    @include font-size(26px);
 }
 
 h3, .h3 {
-    @include responsive-fs(24, 29);
+    @include font-size(24px);
 }
 
 h4, .h4 {
-    @include responsive-fs(20, 23);
+   @include font-size(21px);
 }
 
 p, li {
-    @include responsive-fs(14, 19);
+    @include font-size(16px);
     line-height: 2;
 }
 
-a {
-    transition: color 1500ms $freehand-timing-function;
+a, .btn {
+    transition: all .3s $freehand-timing-function;
+}
+
+
+.btn {
+    letter-spacing:1px;
+    @include font-size(14px);
 }
 
 /********
@@ -62,15 +69,15 @@ STRUCTURE
 *********/
 
 @media (min-width: 1400px) {
-	.container {
-    	max-width: 1340px;
-	}
+    .container {
+        max-width: 1340px;
+    }
 }
 
 @media (min-width: 2000px) {
-	.container {
-	    max-width: 1800px;
-	}
+    .container {
+        max-width: 1800px;
+    }
 }
 
 section {
@@ -121,4 +128,52 @@ ul.inline-list {
     li {
         display: inline-block;
     }
+}
+
+/***** 
+Navbar
+*****/
+
+nav.navbar {
+    padding: 15px 0;
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+    transition: all .3s $freehand-timing-function;
+    z-index:1;
+
+    &.navbar-expand-lg > .container {
+        padding-right: 15px; 
+        padding-left: 15px;
+    }
+
+    .custom-logo-link {
+        transition: all .3s $freehand-timing-function;
+        max-width: 80px;
+        padding: 15px 0;
+        @include media-breakpoint-up(lg) {
+            max-width: 200px;
+        }
+    }
+
+    &.active {
+        padding:5px 0;
+        .custom-logo-link {
+            max-width: 60px;
+            padding: 5px 0;
+            @include media-breakpoint-up(lg) {
+                max-width: 100px;
+            }
+        }
+    }
+
+    .navbar-toggler {
+        .burger-icon {
+            @include burger(25px, 2px, 6px, $primary);
+        }
+
+        &.active .burger-icon {
+            @include burger-to-cross;
+        }
+    }
+
+   
 }
