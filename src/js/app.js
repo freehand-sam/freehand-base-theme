@@ -1,24 +1,30 @@
 (function ($) {
-    // setStickyNav();
-    // setAnimation();
-    // initSmoothScrolling();
+     setStickyNav();
+     //setAnimation();
+     initSmoothScrolling();
+     initAOS();
 
     function setStickyNav() {
-        let distance = $('#wrapper-navbar .navbar').offset().top;
-        const height = $('#wrapper-navbar').outerHeight();
-        $('body').css('padding-top', height);
-        $('body.admin-bar').css('padding-top', height-34);
+        var distance = $('#wrapper-navbar .navbar').offset().top;
+        
         setHeaderStatus(distance);
 
         $(window).scroll(function () {
             setHeaderStatus(distance);
         });
+
+        $(window).resize(function() {
+            $('body').css('margin-top', $('#wrapper-navbar').height());
+            $('.admin-bar').css('margin-top', $('#wrapper-navbar').height()-35);
+        }).resize();
     }
 
     function setHeaderStatus(distance) {
-        let top = $(window).scrollTop();
-        top < distance ? $('#wrapper-navbar .navbar').removeClass('active') : $('#wrapper-navbar .navbar').addClass('active');
+        var top = $(window).scrollTop();
+        top <= distance ? $('#wrapper-navbar .navbar').removeClass('active') : $('#wrapper-navbar .navbar').addClass('active');
     }
+
+
 
     function initFreehandAnimation() {
         setAnimation();
@@ -77,10 +83,10 @@
         });
     }
 
-	/*
-		How to tell if a DOM element is visible in the current viewport?
-		http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
-	*/
+    /*
+        How to tell if a DOM element is visible in the current viewport?
+        http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+    */
     function isElementXPercentInViewport(el, percentVisible) {
         if (typeof jQuery === "function" && el instanceof jQuery) {
             el = el[0];
