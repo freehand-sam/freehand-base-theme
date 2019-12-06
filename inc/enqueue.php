@@ -27,13 +27,8 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
         $gm_api = get_field('google_maps_api_key','option');
         if ($gm_api) {
             wp_enqueue_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=' . $gm_api, null, null, true);
-            wp_enqueue_script( 'gm_config', get_template_directory_uri() . '/js/google-maps.js', array('understrap-scripts'), 1.0, true );
-            wp_localize_script('gm_config', 'wp', array(
-                'mapstyle' => get_field('google_map_style', 'option'), 
-                'wpurl' => get_bloginfo('wpurl'),
-                'mapmarker' => get_field('map_marker', 'option'),
-                'poimarker' => get_field('poi_marker', 'option'),
-            ));
+            wp_enqueue_script( 'googlemaps_config', get_template_directory_uri() . '/js/google-maps.js', array('understrap-scripts'), 1.0, true );
+            wp_localize_script('googlemaps_config', 'script_vars', array('mapstyles' => get_field('map_stylers', 'option')));
         }
 
         wp_enqueue_script('aos', 'https://unpkg.com/aos@next/dist/aos.js', array('understrap-scripts'), 1.0, true );
