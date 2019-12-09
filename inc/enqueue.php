@@ -24,7 +24,7 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 
         wp_enqueue_script( 'jquery' );
         
-        wp_enqueue_script('aos', 'https://unpkg.com/aos@next/dist/aos.js', array('understrap-scripts'), 1.0, true );
+        wp_enqueue_script('aos', 'https://unpkg.com/aos@next/dist/aos.js', array('jquery'), 1.0, true );
         
         $gm_api = get_field('google_maps_api_key','option');
         if ($gm_api) {
