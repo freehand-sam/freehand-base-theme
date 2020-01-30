@@ -54,6 +54,11 @@
             anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
         });
     }
+    
+     //Add active class to navbar toggler for animation
+    $('.navbar-toggler').click(function() {
+        $(this).toggleClass('active');
+    });
 
     // // Smooth Scrolling
     function initSmoothScrolling() {
