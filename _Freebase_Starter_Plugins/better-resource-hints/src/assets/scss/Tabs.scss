@@ -1,0 +1,69 @@
+.TabHolder {
+	position: relative;
+	margin-bottom: 60px;
+}
+
+.Tab {
+	&:nth-child(1) {
+		.Tab-label {
+			left: 0;
+		}
+	}
+
+	&:nth-child(2) {
+		.Tab-label {
+			left: 33.33%;
+		}
+	}
+
+	&:nth-child(3) {
+		.Tab-label {
+			left: 66.66%;
+		}
+	}
+
+	&-content {
+		border-radius: $border-radius;
+		padding: 15px;
+		background: white;
+		display: none;
+		position: relative;
+		top: 47px;
+		z-index: 1;
+	}
+
+	&-label {
+		height: 50px;
+		position: absolute;
+		top: 0;
+		width: 33.33%;
+		color: $gray--dark;
+		display: block;
+		border: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: $border-radius;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		background: $gray--faded;
+		box-shadow: $box-shadow;
+	}
+
+	&-input {
+		position: fixed;
+		top: -100vh;
+
+		&:checked {
+
+			& + .Tab-label {
+				background: white;
+				font-weight: bold;
+			}
+
+			& ~ .Tab-content {
+				display: block;
+			}
+		}
+	}
+}

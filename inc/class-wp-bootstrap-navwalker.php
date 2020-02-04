@@ -189,7 +189,7 @@ if ( ! class_exists( 'Understrap_WP_Bootstrap_Navwalker' ) ) {
 			}
 
 			// If item has_children add atts to <a>.
-			if ( isset( $args->has_children ) && $args->has_children && 0 === $depth && $args->depth !== 1 ) {
+			if ( isset( $args->has_children ) && $args->has_children && 0 === $depth && 1 !== $args->depth ) {
 				$atts['href']          = '#';
 				$atts['data-toggle']   = 'dropdown';
 				$atts['aria-haspopup'] = 'true';
@@ -205,6 +205,8 @@ if ( ! class_exists( 'Understrap_WP_Bootstrap_Navwalker' ) ) {
 					$atts['class'] = 'nav-link';
 				}
 			}
+
+			$atts['aria-current'] = $item->current ? 'page' : '';
 
 			// update atts of this item based on any custom linkmod classes.
 			$atts = self::update_atts_for_linkmod_type( $atts, $linkmod_classes );
@@ -272,7 +274,7 @@ if ( ! class_exists( 'Understrap_WP_Bootstrap_Navwalker' ) ) {
 			 */
 			if ( in_array( 'sr-only', $linkmod_classes, true ) ) {
 				$title         = self::wrap_for_screen_reader( $title );
-				$keys_to_unset = array_keys( $linkmod_classes, 'sr-only' );
+				$keys_to_unset = array_keys( $linkmod_classes, 'sr-only', true );
 				foreach ( $keys_to_unset as $k ) {
 					unset( $linkmod_classes[ $k ] );
 				}

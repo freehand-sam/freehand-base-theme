@@ -39,14 +39,17 @@ $otherCode = get_field('tracking_codes', 'option');
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> <?php understrap_body_attributes(); ?>>
 <?php do_action( 'wp_body_open' ); ?>
 <div class="site" id="page">
 
     <!-- ******************* The Navbar Area ******************* -->
     <div id="headerStickyContainer" class="d-block"></div>	
     <div id="wrapper-navbar" class="fixed-top" itemscope itemtype="http://schema.org/WebSite">
-        <nav class="navbar navbar-expand-lg">
+        <nav id="main-nav" class="navbar navbar-expand-lg" aria-labelledby="main-nav-label">
+        	<h2 id="main-nav-label" class="sr-only">
+				<?php esc_html_e( 'Main Navigation', 'understrap' ); ?>
+			</h2>
             <div class="container">
                 <?php if (!has_custom_logo()) { 
                     if (is_front_page() && is_home()): ?>
@@ -57,7 +60,7 @@ $otherCode = get_field('tracking_codes', 'option');
 					} else {
 					the_custom_logo();
                 } ?><!-- end custom logo -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
 					<span class="burger-icon"></span>
                 </button>
                 <!-- The WordPress Menu goes here -->
