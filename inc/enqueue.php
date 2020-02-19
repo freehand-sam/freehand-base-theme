@@ -30,7 +30,7 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
         if ($gm_api) {
             wp_enqueue_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=' . $gm_api, null, null, true);
             wp_enqueue_script( 'googlemaps_config', get_template_directory_uri() . '/js/google-maps.js', array('understrap-scripts'), 1.0, true );
-            wp_localize_script('googlemaps_config', 'script_vars', array('mapstyles' => get_field('map_stylers', 'option')));
+            wp_localize_script('googlemaps_config', 'script_vars', array('mapstyles' => get_field('google_map_style', 'option')));
         }
 
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/theme.min.js' );

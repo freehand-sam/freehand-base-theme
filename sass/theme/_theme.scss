@@ -186,6 +186,17 @@ nav.navbar {
             @include burger-to-cross;
         }
     }
-
    
+}
+
+
+/********** 
+GOOGLE MAP
+**********/
+.acf-map, #map {
+    width: 100%;
+    height: 500px;
+    img {
+       max-width: inherit !important;
+    }
 }
