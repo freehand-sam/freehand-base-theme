@@ -30,6 +30,12 @@ if ( ! function_exists( 'understrap_body_classes' ) ) {
 			$classes[] = 'hfeed';
 		}
 
+		if ( is_singular( 'page' ) ) {
+			global $post;
+			$classes[] = 'page-' . $post->post_name;
+		}
+
+
 		return $classes;
 	}
 }
