@@ -64,14 +64,25 @@
     function add_marker($marker, map) {
         // var
         var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng')),
-            icon = $marker.attr('data-icon');
+            color = $marker.attr('data-color');
+
+        var myMarker = {
+        path: 'M25 0c-8.284 0-15 6.656-15 14.866 0 8.211 15 35.135 15 35.135s15-26.924 15-35.135c0-8.21-6.716-14.866-15-14.866zm-.049 19.312c-2.557 0-4.629-2.055-4.629-4.588 0-2.535 2.072-4.589 4.629-4.589 2.559 0 4.631 2.054 4.631 4.589 0 2.533-2.072 4.588-4.631 4.588z',
+        fillColor: color,
+        fillOpacity: 1,
+        scale: 1,
+        strokeColor: 'white',
+        strokeWeight: 1,
+        labelOrigin: new google.maps.Point(0, -25)
+        };
 
         // create marker
         var marker = new google.maps.Marker({
             position: latlng,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: icon
+            icon: myMarker
+
         });
 
         // add to array
