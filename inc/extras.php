@@ -208,12 +208,16 @@ add_action('acf/init', 'my_acf_init');
  Enqueue Google Fonts
  *********************************/
 
-$GoogleFonts = get_field('google_fonts','option');
-
-if ($GoogleFonts) :
-	function wpb_add_google_fonts() {
+function load_google_fonts()
+	{
 		$GoogleFonts = get_field('google_fonts','option');
-		wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=' . $GoogleFonts, false, null, 'all'  ); 
+
+		if ($GoogleFonts) :
+			function wpb_add_google_fonts() {
+				$GoogleFonts = get_field('google_fonts','option');
+				wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=' . $GoogleFonts, false, null, 'all'  ); 
+			}
+			add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+		endif;
 	}
-	add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
-endif;
+add_action('acf/init', 'load_google_fonts');
