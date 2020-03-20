@@ -215,7 +215,7 @@ function load_google_fonts()
 		if ($GoogleFonts) :
 			function wpb_add_google_fonts() {
 				$GoogleFonts = get_field('google_fonts','option');
-				wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=' . $GoogleFonts, false, null, 'all'  ); 
+				wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=' . $GoogleFonts, false, null, 'all'  ); 
 			}
 			add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
 		endif;
