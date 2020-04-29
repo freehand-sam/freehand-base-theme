@@ -4,6 +4,23 @@
      initSmoothScrolling();
      initAOS();
 
+    
+    // If Element Exists function
+     $.fn.exists = function(callback) {
+       var args = [].slice.call(arguments, 1);
+       if (this.length) {
+         callback.call(this, args);
+       }
+       return this;
+     };
+     
+     $('.My-Class').exists(function() {
+       //it exists. Do something.
+     });
+
+
+
+
     function setStickyNav() {
         var distance = $('#wrapper-navbar .navbar').offset().top;
         

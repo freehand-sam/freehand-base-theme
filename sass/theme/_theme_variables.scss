@@ -41,7 +41,8 @@ $btn-border-radius: 0;
 $btn-border-width: 1px;
 
 // Timing Function
-$freehand-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+$freehand-timing-function: cubic-bezier(1.00, 0.00, 0.50, 1.00);
+$mytransition: all .3s $freehand-timing-function;
 
 // Navs
 $nav-link-padding-y: .5rem !default;
