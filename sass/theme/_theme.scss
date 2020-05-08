@@ -203,12 +203,6 @@ nav.navbar {
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
     transition: $mytransition;
     z-index:1;
-    border-top:11px solid $secondary;
-    font-family:$headline-font;
-    @include font-size(2rem);
-    text-align:center;
-    text-transform:uppercase;
-    letter-spacing:1px;
     @include media-breakpoint-up(lg) {
         @include font-size(.875rem);
         text-align:left;

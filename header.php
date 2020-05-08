@@ -44,7 +44,6 @@ $otherCode = get_field('tracking_codes', 'option');
 <div class="site" id="page">
 
     <!-- ******************* The Navbar Area ******************* -->
-    <div id="headerStickyContainer" class="d-block"></div>	
     <div id="wrapper-navbar" class="fixed-top" itemscope itemtype="http://schema.org/WebSite">
         <nav id="main-nav" class="navbar navbar-expand-lg" aria-labelledby="main-nav-label">
         	<h2 id="main-nav-label" class="sr-only">
